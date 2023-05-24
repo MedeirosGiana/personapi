@@ -22,6 +22,6 @@ public class Phone {
     private PhoneType type;
 
     @Column(nullable = false)
-    private Integer number;
+    private String number;
 
 }
