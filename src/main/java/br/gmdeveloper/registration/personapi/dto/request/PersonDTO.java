@@ -1,7 +1,7 @@
 package br.gmdeveloper.registration.personapi.dto.request;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
+import br.gmdeveloper.registration.personapi.entity.Person;
+import br.gmdeveloper.registration.personapi.entity.Phone;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,4 +33,7 @@ public class PersonDTO {
     private LocalDate birthDate;
 
     private List<PhoneDTo> phone;
+
+    public void setPhone(List<Phone> phones) {
+    }
 }

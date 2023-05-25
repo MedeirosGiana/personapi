@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonService {
@@ -43,4 +44,25 @@ public class PersonService {
         return MessageResponseDTO.builder()
                 .message("Created person").build();
     }
+
+    public List<Person> findAll(){
+        List<Person> people = personRepository.findAll();
+
+        List<PersonDTO> personDTOs = people.stream()
+                .map(person -> {
+                    PersonDTO personDTO1 = new PersonDTO();
+                    personDTO1.setId(person.getId());
+                    personDTO1.setFirstName(person.getFirstName());
+                    personDTO1.setLastName(person.getLastName());
+                    personDTO1.setCpf(person.getCpf());
+                    personDTO1.setBirthDate(person.getBirthDate());
+                    personDTO1.setPhone(person.getPhones());
+
+                    return personDTO1;
+                })
+                .collect(Collectors.toList());
+
+        return personRepository.findAll();
+    }
+
 }
