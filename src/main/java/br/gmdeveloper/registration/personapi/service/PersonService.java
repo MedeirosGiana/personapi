@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -41,6 +42,14 @@ public class PersonService {
                 .collect(Collectors.toList());
     }
 
+    public PersonDTO findById(Long id) throws PersonNotFoundException {
+        Optional<Person> optionalPerson = personRepository.findById(id);
+        //informa que não foi encontrado no sistema a pessoal procurada
+        if (optionalPerson.isEmpty()){
+            throw new PersonNotFoundException(id);
+        }
+        return personMapper.toDTO(optionalPerson.get());
+    }
 }
 
 
