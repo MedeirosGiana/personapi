@@ -2,6 +2,7 @@ package br.gmdeveloper.registration.personapi.controller;
 
 import br.gmdeveloper.registration.personapi.dto.MessageResponseDTO;
 import br.gmdeveloper.registration.personapi.dto.request.PersonDTO;
+import br.gmdeveloper.registration.personapi.entity.Person;
 import br.gmdeveloper.registration.personapi.exception.PersonNotFoundException;
 import br.gmdeveloper.registration.personapi.service.PersonService;
 import lombok.AllArgsConstructor;
@@ -34,9 +35,15 @@ public class PersonController {
     return  personService.findById(id);
   }
 
+  @PutMapping("/{id}")
+  public MessageResponseDTO updateById(@PathVariable @Valid Long id, PersonDTO personDTO)throws PersonNotFoundException{
+    return personService.updateById(id, personDTO);
+  }
+
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @DeleteMapping("/{id}")
   public  void  deleteById(@PathVariable Long id) throws PersonNotFoundException {
     personService.delete(id);
   }
+
 }
