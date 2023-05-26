@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.PersistenceException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,12 +44,24 @@ public class PersonService {
     }
 
     public PersonDTO findById(Long id) throws PersonNotFoundException {
-        Optional<Person> optionalPerson = personRepository.findById(id);
-        //informa que não foi encontrado no sistema a pessoal procurada
+        Person person = verifyExists(id);
+        return  personMapper.toDTO(person);
+        //opção sem o Lambda
+        /*Optional<Person> optionalPerson = personRepository.findById(id);
+        informa que não foi encontrado no sistema a pessoal procurada
         if (optionalPerson.isEmpty()){
             throw new PersonNotFoundException(id);
-        }
-        return personMapper.toDTO(optionalPerson.get());
+        }*/
+        //opção com o Lambda
+    }
+
+    public void delete(Long id) throws PersonNotFoundException{
+        verifyExists(id);
+        personRepository.deleteById(id);
+    }
+    private Person verifyExists(Long id) throws PersonNotFoundException{
+      return personRepository.findById(id)
+                .orElseThrow(()->new PersonNotFoundException(id));
     }
 }
 
