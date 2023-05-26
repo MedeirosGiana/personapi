@@ -1,27 +1,37 @@
 package br.gmdeveloper.registration.personapi.entity;
 
 import br.gmdeveloper.registration.personapi.enums.PhoneType;
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class Phone {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)//torna o campo obrigatório
+    @Column(nullable = false)
     private PhoneType type;
 
     @Column(nullable = false)
     private String number;
+
 
 }

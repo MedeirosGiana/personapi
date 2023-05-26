@@ -3,10 +3,10 @@ package br.gmdeveloper.registration.personapi.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor
 public enum PhoneType {
+
     HOME("Home"),
     MOBILE("Mobile"),
     COMMERCIAL("Commercial");
