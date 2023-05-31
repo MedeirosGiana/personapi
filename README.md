@@ -1,4 +1,8 @@
 <h2>Desenvolvendo um sistema de gerenciamento de pessoas em API REST com Spring Boot</h2>
+
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/MedeirosGiana/personapi/blob/main/LICENSE)
+
+
 O projeto foi desenvolvido através de uma live coding disponibilizada pela Digital Innovation One, e tem como o objetivo desenvolver um pequeno sistema para o gerenciamento de pessoas de uma empresa através de uma API REST, criada com o Spring Boot.
 
 
